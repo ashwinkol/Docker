@@ -6,7 +6,7 @@ docker run  -d   - running docker in ditached mode
 
 
 /* to run the container! it will run container forever */
-with -d it will run backgroung
+with -d means that a Docker container runs in the background of your terminal
 docker run --name 'pythonContainer' -it -d python or image id
 without -d it will directly get run
 docker run --name 'pythonContainer' -it python or image id
