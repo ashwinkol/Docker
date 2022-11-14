@@ -64,5 +64,5 @@ docker stop <nameOfContainer Or idOfContainer>
 sudo docker build -t myubuntuimg .
 
 2)
-docker run --name myUbuntuImg myubuntuimg
+docker run --name myUbuntuImg myubuntuimg  
 
