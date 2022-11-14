@@ -1,0 +1,68 @@
+docker ps - will show running container
+docker ps -a - show running history
+
+docker run <image name> - will run image
+docker run  -d   - running docker in ditached mode
+
+
+/* to run the container! it will run container forever */
+with -d it will run backgroung
+docker run --name 'pythonContainer' -it -d python or image id
+without -d it will directly get run
+docker run --name 'pythonContainer' -it python or image id
+
+
+/* Enter into container * /
+
+
+
+/* get all information about container */
+
+docker inspect <id> or name
+
+
+/* Docker Details */
+docker inspect
+
+/ * Steps */
+
+1)  Run Docker
+docker run --name 'nameOfDocker' -d python [or id of the container] 
+2) Enter Into Docker 
+docker exec -it python python3
+
+/* Steps */
+1) Create Docker 
+docker run --name mySqlDb -e MYSQL_ROOT_PASSWORD=password -d mysql
+
+2) Enter into Docker
+docker exec -it mySqlDb bash
+
+/* Steps */
+1)
+docker pull httpd
+2)
+docker run --name myApache -d -p 8081:80 httpd
+
+
+/* Remove Docker from histoy */
+docker rm <id of the docker>
+
+/* remove docker images */
+docker rmi <name of the image>
+
+/* restart Container */
+docker restart <container name >
+
+/* Steps to Stop Container */
+docker stop <nameOfContainer Or idOfContainer>
+
+
+/* build Ubuntu Image */
+
+1)
+sudo docker build -t myubuntuimg .
+
+2)
+docker run --name myUbuntuImg myubuntuimg
+
