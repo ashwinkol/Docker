@@ -1,0 +1,63 @@
+1) Remove all Containers 
+
+docker container rm -f $(docker container ls -q)
+
+2) Remove all images 
+
+docker image rm -f $(docker image ls -q)
+
+3) install all dependancy 
+
+docker-compose up
+
+
+4) Create docker-compose yaml file 
+
+
+
+
+5) Build all docker images  
+
+docker-compose build --no-cache
+
+
+6) starting all the containers or applications 
+
+docker-compose up -d  - will start all containers in background
+
+
+7) stop and remove containers 
+
+docker-compose down
+
+
+/* Docker Compose Steps for Full Stack Application */
+
+1) put frontend and backend folder into one folder and install all the dependacy on it eg: npm install 
+   note : sub folders should have Dockerfile
+
+2) This will install all the dependancy
+   docker-compose up
+
+3) docker-compose.yml file 
+
+version: '3.8'
+services:
+  database:
+    image: mysql
+    ports:
+      -3307:3307
+  frontend:
+    build: ./frontend
+    ports:
+      -3000:3000
+  backend:
+    build: ./backend
+    ports:
+      -3001:3001
+  
+4) Build 
+sudo docker-compose build
+
+
+

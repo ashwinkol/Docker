@@ -1,3 +1,28 @@
+/* Creating Docker File */
+
+FROM openjdk:8
+WORKDIR /usr/src/myapp
+COPY . /usr/src/myapp/
+CMD ["java","-jar","StudentManagement-0.0.1-SNAPSHOT.war"]
+EXPOSE 9595
+
+
+/* Build and Image of it */
+
+sudo docker build -t myspringapp3 .
+
+
+/* show imags */
+
+sudo docker ps
+
+/* run the container */
+
+sudo docker run --name mySpringBootApp -d  myspringapp3
+
+
+
+
 docker ps - will show running container
 docker ps -a - show running history
 
@@ -33,7 +58,7 @@ docker exec -it python python3
 
 /* Steps */
 1) Create Docker 
-docker run --name mySqlDb -e MYSQL_ROOT_PASSWORD=password -d mysql
+docker run --name helloSql -e MYSQL_ROOT_PASSWORD=password -d hellosql
 
 2) Enter into Docker
 docker exec -it mySqlDb bash
@@ -58,10 +83,10 @@ docker restart <container name >
 docker stop <nameOfContainer Or idOfContainer>
 
 
-/* build Ubuntu Image */
+/* build an Image */
 
 1)
-sudo docker build -t myubuntuimg .
+sudo docker build -t nameoftheimg .
 
 2)
 docker run --name myUbuntuImg myubuntuimg  

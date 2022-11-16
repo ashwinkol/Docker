@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  server: 
+    build: ./backend
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysqldb
+  mysqldb:
+    build: ./mysqldb
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+        MYSQL_DATABASE: CdacProject
+        MYSQL_USER: password
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password
+
+  
+  
+
