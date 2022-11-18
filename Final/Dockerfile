@@ -8,7 +8,6 @@ RUN apt-get install -y
 
 RUN apt-get install -y mysql-server
 
-ENTRYPOINT [ ""/etc/init.d/mysql start""]
 CMD ["/bin/bash"]
 
 EXPOSE 9090
