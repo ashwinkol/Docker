@@ -12,3 +12,8 @@ CMD ["/bin/bash"]
 sudo docker build -t ubunutuimg3 .
 sudo docker run -it  ubunutuimg3
 sudo docker run  -p 8585:85 --name theTask5 -it ubunutuimg5
+
+sudo docker build -t finalsql19 .
+sudo docker run -p 8686:86 --name FinalSql43 -it finalsql19
+
+service mysql start
