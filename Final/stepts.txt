@@ -1,19 +1,20 @@
-FROM ubuntu:20.04
 
-ENV TERM linux
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update
-RUN apt-get install -y  
-RUN apt install mysql-server -y
-
-CMD ["/bin/bash"]
- 
 sudo docker build -t ubunutuimg3 .
 sudo docker run -it  ubunutuimg3
 sudo docker run  -p 8585:85 --name theTask5 -it ubunutuimg5
 
 sudo docker build -t finalsql19 .
 sudo docker run -p 8686:86 --name FinalSql43 -it finalsql19
+sudo docker run -p 9090:92  --name final7 -it -d finalsql39 
 
 service mysql start
+
+# Create the build
+sudo docker build -t finalsql19 .
+
+# Run Build in ditached mode
+sudo docker run -p 9090:92  --name final7 -it -d finalsql39 
+
+
+# To intract with mysql on that container 
+sudo docker exec {name of the container} mysql  -e 'show databases;'
