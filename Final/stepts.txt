@@ -18,3 +18,33 @@ sudo docker run -p 9090:92  --name final7 -it -d finalsql39
 
 # To intract with mysql on that container 
 sudo docker exec {name of the container} mysql  -e 'show databases;'
+
+# Create New User
+sudo docker exec FinalBuild1 mysql -e "CREATE USER 'ashwin'@'localhost' IDENTIFIED BY 'password';"
+
+# Allow all priviliges to user 
+sudo docker exec FinalBuild1 mysql "GRANT ALL PRIVILEGES ON *.* TO 'ashwin'@'localhost' WITH GRANT OPTION;"
+
+# Show databases
+sudo docker exec FinalBuild1 mysql -u ashwin -ppassword -e "show databases;"
+
+# Intract with docker shell 
+sudo docker exec -it {name of the container} sh
+
+
+
+
+/*******************************************/
+
+# if you want to delete the all images 
+
+sudo docker ps 
+
+sudo docker rm -vf $(docker ps -aq)
+
+
+sudo docker rmi -f $(docker images -aq)
+
+
+
+
