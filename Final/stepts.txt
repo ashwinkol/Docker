@@ -13,17 +13,23 @@ service mysql start
 sudo docker build -t finalsql19 .
 
 # Run Build in ditached mode
-sudo docker run -p 9090:92  --name final7 -it -d finalsql39 
+sudo docker run -p 1234:3306 --name Final6 -it -d finalbuild10
+
+--- sudo docker run -d --name mysql-server --network my-bridge -p 3306:3306 finalbuild8
 
 
 # To intract with mysql on that container 
 sudo docker exec {name of the container} mysql  -e 'show databases;'
 
 # Create New User
-sudo docker exec FinalBuild1 mysql -e "CREATE USER 'ashwin'@'localhost' IDENTIFIED BY 'password';"
+sudo docker exec FinalBuild1 mysql -e "CREATE USER 'user'@'172.17.0.1' IDENTIFIED BY 'password';"
 
 # Allow all priviliges to user 
-sudo docker exec FinalBuild1 mysql "GRANT ALL PRIVILEGES ON *.* TO 'ashwin'@'localhost' WITH GRANT OPTION;"
+sudo docker exec final11 mysql "GRANT ALL PRIVILEGES ON *.* TO 'user'@'172.17.0.1' WITH GRANT OPTION;"
+
+# 
+FLUSH PRIVILEGES;
+
 
 # Show databases
 sudo docker exec FinalBuild1 mysql -u ashwin -ppassword -e "show databases;"
@@ -32,6 +38,22 @@ sudo docker exec FinalBuild1 mysql -u ashwin -ppassword -e "show databases;"
 sudo docker exec -it {name of the container} sh
 
 
+
+#
+mysql -h 172.17.0.1 -p 3306 
+
+mysql -h 127.0.0.1 -uuser -p 3306
+
+ mysql -h 127.0.0.1 -uabc1 -p mysql
+
+mysql -h 172.17.0.1 -uabc -p 3306
+
+mysql -u user -h 127.0.0.1 -P 1234 -p
+
+working mysql -h 127.0.0.1 -u root -p -P 3306
+
+
+hostname -I
 
 
 /*******************************************/

@@ -5,9 +5,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 RUN apt-get install -y  
-
-RUN apt-get install -y mysql-server
+RUN apt-get install -y mysql-server 
 
 COPY init.sh /usr/local/bin/init.sh 
+
 RUN chmod +x /usr/local/bin/init.sh 
-CMD ["init.sh","mysqld"]
+
+VOLUME /var/lib/mysql
+
+EXPOSE 3306
+
+CMD ["init.sh"]
