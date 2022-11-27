@@ -4,8 +4,8 @@ sudo docker run -it  ubunutuimg3
 sudo docker run  -p 8585:85 --name theTask5 -it ubunutuimg5
 
 sudo docker build -t finalsql19 .
-sudo docker run -p 8686:86 --name FinalSql43 -it finalsql19
-sudo docker run -p 9090:92  --name final7 -it -d finalsql39 
+sudo docker run -p 8686:86 --name Final1 -it finalbuild
+sudo docker run -p 9090:92  --name Final1 -it -d finalbuild 
 
 service mysql start
 
@@ -13,7 +13,7 @@ service mysql start
 sudo docker build -t finalsql19 .
 
 # Run Build in ditached mode
-sudo docker run -p 3307:3306 --name Final5 -it -d finalbuild
+sudo docker run -p 3308:3306 --ip 192.168.1.13 --name Final -it -d mysqlimg
 
 --- sudo docker run -d --name mysql-server --network my-bridge -p 3306:3306 finalbuild8
 
@@ -44,28 +44,41 @@ mysql -h 172.17.0.1 -p 3306
 
 mysql -h 127.0.0.1 -uuser -p 3306
 
- mysql -h 127.0.0.1 -uabc1 -p mysql
+mysql -h 127.0.0.1 -uabc1 -p mysql
 
 mysql -h 172.17.0.1 -uabc -p 3306
 
 mysql -u user -h 127.0.0.1 -P 1234 -p
 
-working mysql -h 127.0.0.1 -u root -p -P 3306
+working mysql -h 127.0.0.1 -u user -p -P 3307
 
-mysql -h 172.17.0.2 -P 3307 --protocol=tcp -u root -p
+working :mysql -h 172.17.0.2 -P 3307 --protocol=tcp -u user -p
 
 hostname -I
 
+telnet 127.0.0.1 3308
+
+
 Steps
 
- sudo docker exec -it Final5 /bin/bash
+ sudo docker exec -it Final1 /bin/bash
 
- select user,host  from  mysql.user;
+ service mysql start
+
+
 
 CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
 
+update mysql.user set host='%' where user='root';
+
+FLUSH PRIVILEGES;
+
+ select user,host from  mysql.user;
+
+
+****************************************** Working ******************************************88
 mysql -uuser -p -P3307 -h127.0.0.1 
 
 
@@ -81,6 +94,27 @@ sudo docker rm -vf $(docker ps -aq)
 
 sudo docker rmi -f $(docker images -aq)
 
+
+/*****************************************/
+Dicussion with prerit
+
+curl 192.168.1.13:3307
+*Working 
+mysql -u user -P 3307 
+**was working
+mysql -u root -P 3307 -h localhost
+mysql -u root -p -P 3307
+
+
+curl 192.168.1.13:3307
+sudo docker system prune -af
+
+
+* working
+mysql -u user -P 3308 -h localhost
+
+*not working 
+mysql -u user -P 3307 -h 192.168.1.13 
 
 
 
