@@ -79,7 +79,9 @@ FLUSH PRIVILEGES;
 
 
 ****************************************** Working ******************************************
-docker run -d --name="mysql-run" -e "MYSQL_PASSWORD=password" -p 3307:3306 mysql-Final
+docker run  --name Final -p 3307:3306 -it -d test1
+ sudo docker exec -it Final /bin/bash
+
 mysql -uuser -p -P3307 -h127.0.0.1 
 
 

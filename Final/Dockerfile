@@ -6,11 +6,12 @@ RUN apt-get update
 RUN apt-get install -y mysql-server 
 ADD bind_0.cnf /etc/mysql/conf.d/bind_0.cnf
 
-ADD init.sh /init.sh
-RUN chmod 755 /*.sh
-ENTRYPOINT ["/init.sh"]
+VOLUME /var/lib/mysql
+
+COPY init.sh /usr/local/bin/init.sh 
+RUN chmod +x /usr/local/bin/init.sh 
 
 
 EXPOSE 3306
 
-CMD ["mysqld_safe"]
+CMD init.sh
