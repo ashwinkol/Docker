@@ -13,7 +13,7 @@ service mysql start
 sudo docker build -t finalsql19 .
 
 # Run Build in ditached mode
-sudo docker run -p 3308:3306 --ip 192.168.1.13 --name Final -it -d mysqlimg
+sudo docker run -p 3308:3306 --name Final -it -d final-mysql
 
 --- sudo docker run -d --name mysql-server --network my-bridge -p 3306:3306 finalbuild8
 
@@ -61,7 +61,7 @@ telnet 127.0.0.1 3308
 
 Steps
 
- sudo docker exec -it Final1 /bin/bash
+ sudo docker exec -it mysql-Final /bin/bash
 
  service mysql start
 
@@ -78,7 +78,8 @@ FLUSH PRIVILEGES;
  select user,host from  mysql.user;
 
 
-****************************************** Working ******************************************88
+****************************************** Working ******************************************
+docker run -d --name="mysql-run" -e "MYSQL_PASSWORD=password" -p 3307:3306 mysql-Final
 mysql -uuser -p -P3307 -h127.0.0.1 
 
 
