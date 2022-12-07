@@ -1,0 +1,36 @@
+version: "3"
+services:
+  react-app:
+    image: reactapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - spring-app
+      - mysqldb
+    networks:
+      - test-mysql
+
+   
+  spring-app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - test-mysql
+    depends_on:
+      - mysqldb
+    restart: always
+ 
+  mysqldb:
+    image: mysql-abc
+    container_name: mysqldb
+    networks:
+      - test-mysql
+    environment:
+      - MYSQL_DATABASE=bootdb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+
+
+networks:
+  test-mysql:

@@ -1,0 +1,173 @@
+
+sudo docker build -t ubunutuimg3 .
+sudo docker run -it  ubunutuimg3
+sudo docker run  -p 8585:85 --name theTask5 -it ubunutuimg5
+
+sudo docker build -t finalsql19 .
+sudo docker run -p 8686:86 --name Final1 -it finalbuild
+sudo docker run -p 9090:92  --name Final1 -it -d finalbuild 
+
+service mysql start
+
+# Create the build
+sudo docker build -t finalsql19 .
+
+# Run Build in ditached mode
+sudo docker run -p 3308:3306 --name Final -it -d final-mysql
+
+--- sudo docker run -d --name mysql-server --network my-bridge -p 3306:3306 finalbuild8
+
+
+# To intract with mysql on that container 
+sudo docker exec {name of the container} mysql  -e 'show databases;'
+
+# Create New User
+sudo docker exec FinalBuild1 mysql -e "CREATE USER 'user'@'%' IDENTIFIED BY 'password';"
+
+# Allow all priviliges to user 
+sudo docker exec final11 mysql "GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;"
+
+# 
+FLUSH PRIVILEGES;
+
+
+# Show databases
+sudo docker exec FinalBuild1 mysql -u ashwin -ppassword -e "show databases;"
+
+# Intract with docker shell 
+sudo docker exec -it {name of the container} sh
+
+
+
+#
+mysql -h 172.17.0.1 -p 3306 
+
+mysql -h 127.0.0.1 -uuser -p 3306
+
+mysql -h 127.0.0.1 -uabc1 -p mysql
+
+mysql -h 172.17.0.1 -uabc -p 3306
+
+mysql -u user -h 127.0.0.1 -P 1234 -p
+
+working mysql -h 127.0.0.1 -u user -p -P 3307
+
+working :mysql -h 172.17.0.2 -P 3307 --protocol=tcp -u user -p
+
+hostname -I
+
+telnet 127.0.0.1 3308
+
+
+Steps
+
+ sudo docker exec -it Final /bin/bash
+
+ service mysql start
+
+
+
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
+
+update mysql.user set host='%' where user='root';
+
+FLUSH PRIVILEGES;
+
+ select user,host from  mysql.user;
+
+
+****************************************** Working ******************************************
+docker run  --name My-Sql -p 3307:3306 -it -d mysql-final
+sudo docker exec -it My-Sql /bin/bash
+
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+select user,host from mysql.user;
+
+mysql -uuser -ppassword -P3307 -h127.0.0.1 
+
+**Network
+docker run  --name My-Sql --net spring-net -p 3307:3306 -it -d mysql-final
+
+ docker run  --name Spring-App -e MYSQL_HOST=My-Sql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306 --net spring-net -p 9090:8080 -it -d student-app
+
+
+
+/*******************************************/
+
+# if you want to delete the all images 
+
+sudo docker ps 
+
+sudo docker rm -vf $(docker ps -aq)
+
+
+sudo docker rmi -f $(docker images -aq)
+
+
+/*****************************************/
+Dicussion with prerit
+
+curl 192.168.1.13:3307
+*Working 
+mysql -u user -P 3307 
+**was working
+mysql -u root -P 3307 -h localhost
+mysql -u root -p -P 3307
+
+
+curl 192.168.1.13:3307
+sudo docker system prune -af
+
+
+* working
+mysql -u user -P 3308 -h localhost
+
+*not working 
+mysql -u user -P 3307 -h 192.168.1.13 
+
+
+/************************** Network *************************************/
+sudo docker network connect spring-net My-Sql
+sudo docker inspect My-Sql
+
+docker network create spring-net
+
+docker network connect network_name Container_name 
+
+docker container inspect Container_name 
+
+sudo docker run -p 3307:3306 --name mysqldb --net spring-net -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=user -e MYSQL_PASSWORD=password -e MYSQL_DATABASE=test mysql
+
+sudo docker run -p 9090:8080 --name Spring-App --net spring-net -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_PORT=3306 springapp
+
+
+/************************* Docker Compose *******************************/
+
+sudo snap install docker
+
+sudo snap remove docker
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+
+docker image prune -a -f
+
+
+************************** Final Assignment Setup ********************************
+1.login to the database 
+2.create new user 
+3.create database bootdb
+
+
+
+
+****************************************************************************
+
+
+
+
